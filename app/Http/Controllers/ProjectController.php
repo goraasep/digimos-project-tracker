@@ -51,8 +51,8 @@ class ProjectController extends Controller
                 $nestedData['project_number'] = $row->project_number;
                 $nestedData['budget'] = 'Rp ' . number_format($row->budget, 0, '.', ',');
                 $nestedData['client'] = $row->client;
-                $nestedData['start_date'] = $row->start_date;
-                $nestedData['end_date'] = $row->end_date;
+                $nestedData['start_date'] = \Carbon\Carbon::parse($row->start_date)->format('d M Y');
+                $nestedData['end_date'] = \Carbon\Carbon::parse($row->end_date)->format('d M Y');
                 $nestedData['created_at'] = $row->created_at->format('d M Y H:i');
                 $nestedData['actions'] = view('projects.components.actions', ['project' => $row])->render();
                 $data[] = $nestedData;
