@@ -103,7 +103,7 @@ class ProjectController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('projects.project-details', ['project' => Project::find($id)]);
     }
 
     /**
@@ -130,10 +130,8 @@ class ProjectController extends Controller
                 'description' => 'nullable|string',
             ]);
             Project::where('id', $id)->update($validated);
-            // return redirect()->back()
-            //     ->with('success', 'Project updated successfully.');
             return redirect()->back()
-                ->with('error', 'Error during the update!');
+                ->with('success', 'Project updated successfully.');
         } catch (\Exception $e) {
             return redirect()->back()
                 ->with('error', 'Error during the update! ' . $e->getMessage());

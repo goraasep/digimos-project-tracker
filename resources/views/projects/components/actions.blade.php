@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-around gap-2">
-    <span class="btn btn-6 btn-outline-primary w-100">Details</span>
+    <a href="/projects/{{ $project->id }}" class="btn btn-6 btn-outline-primary w-100">Details</a>
     <button class="btn btn-6 btn-outline-primary w-100" data-bs-toggle="modal"
         data-bs-target="#modal-edit-project-{{ $project->id }}">
         Edit

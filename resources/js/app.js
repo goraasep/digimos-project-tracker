@@ -27,6 +27,7 @@ $(document).ready(function () {
     $("#projectTable").DataTable({
         processing: true,
         serverSide: true,
+        responsive: true,
         paging: true,
         pageLength: 10,
         ordering: true,
@@ -72,6 +73,7 @@ $(document).ready(function () {
     $("#userTable").DataTable({
         processing: true,
         serverSide: true,
+        responsive: true,
         paging: true,
         pageLength: 10,
         ordering: true,

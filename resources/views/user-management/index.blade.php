@@ -34,7 +34,7 @@
         </div>
     </div>
     <div class="page-body">
-        <div class="container-xl">
+        <div class="container-xl table-responsive">
             <table id="userTable" class="display">
                 <thead>
                     <tr>

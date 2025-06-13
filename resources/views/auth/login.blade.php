@@ -13,9 +13,7 @@
     <div class="page page-center">
         <div class="container-tight py-4">
             <div class="text-center mb-4">
-                <a href="."><img src="./static/logo.svg" height="36" alt=""></a>
-                {{-- change logo later --}}
-                TABLER
+                <img src="{{ asset('assets/logo/digimos-project-2.png') }}" height="36" alt="">
             </div>
             <form class="card card-md" method="POST" action="/login" autocomplete="off">
                 @csrf
