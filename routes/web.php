@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +18,13 @@ Route::post('/login', [AuthController::class, 'login'])->middleware('guest');
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', function () {
-        return view('dashboard', ["user" => Auth::user()->name]);
+    Route::get('/', [ProjectController::class, 'index']);
+    Route::prefix('/projects')->group(function () {
+        Route::get('/create', [ProjectController::class, 'create']);
+        Route::post('/create', [ProjectController::class, 'store']);
+        Route::get('/{id}', [ProjectController::class, 'show']);
+        Route::get('/{id}/edit', [ProjectController::class, 'edit']);
+        Route::put('/{id}', [ProjectController::class, 'update']);
+        Route::delete('/{id}', [ProjectController::class, 'destroy']);
     });
 });
