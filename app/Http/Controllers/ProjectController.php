@@ -49,18 +49,12 @@ class ProjectController extends Controller
                 // $alert = '<span class="badge badge-sm border border-success text-success bg-success">' . $row->alert . '</span>';
                 $nestedData['title'] = $row->title;
                 $nestedData['project_number'] = $row->project_number;
-                $nestedData['budget'] = $row->budget;
+                $nestedData['budget'] = 'Rp ' . number_format($row->budget, 0, '.', ',');
                 $nestedData['client'] = $row->client;
                 $nestedData['start_date'] = $row->start_date;
                 $nestedData['end_date'] = $row->end_date;
                 $nestedData['created_at'] = $row->created_at->format('d M Y H:i');
-                $nestedData['actions'] = '
-                <div class="d-flex justify-content-around">
-                <span class="badge badge-outline text-blue">Details</span>
-                <span class="badge badge-outline text-yellow">Edit</span>
-                <span class="badge badge-outline text-red">Delete</span>
-                </div>';
-                // $nestedData[] = view('modal.edit-parameter', ['parameters' => Parameters::all(), 'parameter' => $row, 'device_uuid' => $request->device_uuid])->render();
+                $nestedData['actions'] = view('projects.components.actions', ['project' => $row])->render();
                 $data[] = $nestedData;
             }
         }
@@ -88,6 +82,24 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         //
+        $validated = $request->validate([
+            'title' => 'required',
+            'project_number' => 'nullable|string',
+            'budget' => 'required | numeric',
+            'client' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'description' => 'nullable|string',
+        ]);
+
+        try {
+            Project::create($validated);
+            return redirect()->back()
+                ->with('success', 'Project created successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('success', 'Error during the creation!');
+        }
     }
 
     /**
@@ -112,6 +124,24 @@ class ProjectController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $validated = $request->validate([
+            'title' => 'required',
+            'project_number' => 'nullable|string',
+            'budget' => 'required | numeric',
+            'client' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'description' => 'nullable|string',
+        ]);
+
+        try {
+            Project::where('id', $id)->update($validated);
+            return redirect()->back()
+                ->with('success', 'Project updated successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('success', 'Error during the update!');
+        }
     }
 
     /**
@@ -120,5 +150,13 @@ class ProjectController extends Controller
     public function destroy(string $id)
     {
         //
+        try {
+            Project::where('id', $id)->delete();
+            return redirect()->back()
+                ->with('success', 'Project deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('success', 'Error during the deletion!');
+        }
     }
 }
