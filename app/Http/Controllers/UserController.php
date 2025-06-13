@@ -83,7 +83,8 @@ class UserController extends Controller
                 'password' => 'required',
             ]);
             $validated['password'] = bcrypt($validated['password']);
-            User::create($validated);
+            $user = User::create($validated);
+            $user->assignRole('user');
             return redirect()->back()
                 ->with('success', 'User created successfully.');
         } catch (\Exception $e) {
@@ -155,7 +156,9 @@ class UserController extends Controller
         //might be deleted or changed into soft delete
         //or just ban the user
         try {
-            User::where('id', $id)->delete();
+            $user = User::where('id', $id)->first();
+            $user->roles()->detach();
+            $user->delete();
             return redirect()->back()
                 ->with('success', 'User deleted successfully.');
         } catch (\Exception $e) {
