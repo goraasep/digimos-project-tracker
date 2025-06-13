@@ -56,7 +56,6 @@ $(document).ready(function () {
                 name: "created_at",
                 orderSequence: ["asc", "desc"],
             },
-            // { data: 'action' },
             {
                 data: "actions",
                 name: "actions",
@@ -66,7 +65,44 @@ $(document).ready(function () {
         ],
         language: {
             lengthMenu: "Show _MENU_ entries",
-            // search: "🔍 Search:",
+            zeroRecords: "Nothing found",
+            info: "Showing _START_ to _END_ of _TOTAL_ entries",
+        },
+    });
+    $("#userTable").DataTable({
+        processing: true,
+        serverSide: true,
+        paging: true,
+        pageLength: 10,
+        ordering: true,
+        order: [[1, "asc"]],
+        ajax: "/user-management/data",
+        columns: [
+            { data: "name", name: "name", orderSequence: ["asc", "desc"] },
+            {
+                data: "email",
+                name: "email",
+                orderSequence: ["asc", "desc"],
+            },
+            {
+                data: "updated_at",
+                name: "updated_at",
+                orderSequence: ["asc", "desc"],
+            },
+            {
+                data: "created_at",
+                name: "created_at",
+                orderSequence: ["asc", "desc"],
+            },
+            {
+                data: "actions",
+                name: "actions",
+                orderable: false,
+                searchable: false,
+            },
+        ],
+        language: {
+            lengthMenu: "Show _MENU_ entries",
             zeroRecords: "Nothing found",
             info: "Showing _START_ to _END_ of _TOTAL_ entries",
         },

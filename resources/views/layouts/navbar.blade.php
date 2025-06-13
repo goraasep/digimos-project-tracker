@@ -51,6 +51,18 @@
                             </span>
                         </a>
                     </li>
+                    @if (Auth::user()->hasRole('admin'))
+                        <li class="nav-item {{ request()->is('user-management') ? 'active' : '' }}">
+                            <a class="nav-link" href="/user-management">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <i class="fas fa-users-rectangle"></i>
+                                </span>
+                                <span class="nav-link-title">
+                                    User Management
+                                </span>
+                            </a>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>

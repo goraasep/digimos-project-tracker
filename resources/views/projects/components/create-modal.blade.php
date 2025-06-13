@@ -11,8 +11,8 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label class="form-label">Title</label>
-                        <input type="text" name="title" class="form-control" name="example-text-input"
-                            placeholder="Your project name" required>
+                        <input type="text" name="title" class="form-control" placeholder="Your project name"
+                            required>
                     </div>
                 </div>
                 <div class="modal-body">

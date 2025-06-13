@@ -1,18 +1,6 @@
-{{-- <button style="outline: none;box-shadow: none;" class="btn btn-sm btn-icon mb-0 me-2 border-0" data-bs-toggle="modal"
-    data-bs-target="#editParamModal-{{ $parameter->id }}">
-    <span class="btn-inner--icon">
-        <i class="fa-solid fa-pen-to-square"></i>
-    </span>
-</button>
-<button style="outline: none;box-shadow: none;" class="btn btn-sm btn-icon mb-0 me-2 border-0" data-bs-toggle="modal"
-    data-bs-target="#deleteParamModal-{{ $parameter->id }}">
-    <span class="btn-inner--icon">
-        <i class="fa-solid fa-trash"></i>
-    </span>
-</button> --}}
 <div class="d-flex justify-content-around gap-2">
     <span class="btn btn-6 btn-outline-primary w-100">Details</span>
-    <button class="btn btn-6 btn-outline-warning w-100" data-bs-toggle="modal"
+    <button class="btn btn-6 btn-outline-primary w-100" data-bs-toggle="modal"
         data-bs-target="#modal-edit-project-{{ $project->id }}">
         Edit
     </button>
@@ -35,8 +23,8 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label class="form-label">Title</label>
-                        <input value="{{ old('unit', $project->title) }}" type="text" name="title"
-                            class="form-control" name="example-text-input" placeholder="Your project name" required>
+                        <input value="{{ old('title', $project->title) }}" type="text" name="title"
+                            class="form-control" required>
                     </div>
                 </div>
                 <div class="modal-body">
@@ -104,7 +92,6 @@
             <form action="/projects/{{ $project->id }}" method="POST">
                 @method('delete')
                 @csrf
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="modal-status bg-danger"></div>
                 <div class="modal-body text-center py-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24"
