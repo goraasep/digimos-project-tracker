@@ -81,24 +81,22 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $validated = $request->validate([
-            'title' => 'required',
-            'project_number' => 'nullable|string',
-            'budget' => 'required | numeric',
-            'client' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
-            'description' => 'nullable|string',
-        ]);
-
         try {
+            $validated = $request->validate([
+                'title' => 'required',
+                'project_number' => 'nullable|string',
+                'budget' => 'required | numeric',
+                'client' => 'required',
+                'start_date' => 'required',
+                'end_date' => 'required',
+                'description' => 'nullable|string',
+            ]);
             Project::create($validated);
             return redirect()->back()
                 ->with('success', 'Project created successfully.');
         } catch (\Exception $e) {
             return redirect()->back()
-                ->with('success', 'Error during the creation!');
+                ->with('error', 'Error during the creation!');
         }
     }
 
@@ -123,24 +121,24 @@ class ProjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-        $validated = $request->validate([
-            'title' => 'required',
-            'project_number' => 'nullable|string',
-            'budget' => 'required | numeric',
-            'client' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
-            'description' => 'nullable|string',
-        ]);
-
         try {
+            $validated = $request->validate([
+                'title' => 'required',
+                'project_number' => 'nullable|string',
+                'budget' => 'required | numeric',
+                'client' => 'required',
+                'start_date' => 'required',
+                'end_date' => 'required',
+                'description' => 'nullable|string',
+            ]);
             Project::where('id', $id)->update($validated);
+            // return redirect()->back()
+            //     ->with('success', 'Project updated successfully.');
             return redirect()->back()
-                ->with('success', 'Project updated successfully.');
+                ->with('error', 'Error during the update!');
         } catch (\Exception $e) {
             return redirect()->back()
-                ->with('success', 'Error during the update!');
+                ->with('error', 'Error during the update!');
         }
     }
 
@@ -149,14 +147,13 @@ class ProjectController extends Controller
      */
     public function destroy(string $id)
     {
-        //
         try {
             Project::where('id', $id)->delete();
             return redirect()->back()
                 ->with('success', 'Project deleted successfully.');
         } catch (\Exception $e) {
             return redirect()->back()
-                ->with('success', 'Error during the deletion!');
+                ->with('error', 'Error during the deletion!');
         }
     }
 }

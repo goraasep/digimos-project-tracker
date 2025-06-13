@@ -38,13 +38,13 @@
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <label class="form-label">Start date</label>
-                                <input type="date" name="start_date" class="form-control">
+                                <input type="date" name="start_date" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <label class="form-label">End date</label>
-                                <input type="date" name="end_date" class="form-control">
+                                <input type="date" name="end_date" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-lg-12">
@@ -59,7 +59,7 @@
                     <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
                         Cancel
                     </a>
-                    <button type="submit" class="btn btn-primary ms-auto" data-bs-dismiss="modal">
+                    <button type="submit" class="btn btn-primary ms-auto">
                         <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"

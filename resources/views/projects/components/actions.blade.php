@@ -66,14 +66,14 @@
                             <div class="mb-3">
                                 <label class="form-label">Start date</label>
                                 <input value="{{ old('start_date', $project->start_date) }}" type="date"
-                                    name="start_date" class="form-control">
+                                    name="start_date" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <label class="form-label">End date</label>
                                 <input value="{{ old('end_date', $project->end_date) }}" type="date" name="end_date"
-                                    class="form-control">
+                                    class="form-control" required>
                             </div>
                         </div>
                         <div class="col-lg-12">
@@ -88,7 +88,7 @@
                     <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
                         Cancel
                     </a>
-                    <button type="submit" class="btn btn-primary ms-auto" data-bs-dismiss="modal">
+                    <button type="submit" class="btn btn-primary ms-auto">
                         Update project
                     </button>
                 </div>
@@ -130,7 +130,7 @@
                                 </a>
                             </div>
                             <div class="col">
-                                <button type="submit" class="btn btn-danger w-100" data-bs-dismiss="modal">
+                                <button type="submit" class="btn btn-danger w-100">
                                     Delete this project
                                 </button>
                             </div>

@@ -1,5 +1,6 @@
 // import './bootstrap';
 import "@tabler/core";
+import "@fortawesome/fontawesome-free/js/all";
 // resources/js/app.js
 import "datatables.net-dt"; // JS functionality
 import "datatables.net-dt/css/dataTables.dataTables.css"; // CSS
