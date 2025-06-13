@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Auth;
@@ -27,5 +28,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/{id}/edit', [ProjectController::class, 'edit']);
         Route::put('/{id}', [ProjectController::class, 'update']);
         Route::delete('/{id}', [ProjectController::class, 'destroy']);
+    });
+    Route::prefix('/account')->group(function () {
+        Route::get('/settings', [AccountController::class, 'index']);
+        Route::put('/change-password', [AccountController::class, 'changePassword']);
+        Route::put('/update', [AccountController::class, 'update']);
     });
 });

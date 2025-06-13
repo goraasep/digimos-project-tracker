@@ -55,9 +55,4 @@
         </div>
     </div>
     @include('projects.components.create-modal')
-    {{-- <script>
-        $(document).ready(function() {
-            $('#myTable').DataTable();
-        });
-    </script> --}}
 @endsection

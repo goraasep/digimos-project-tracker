@@ -73,7 +73,6 @@ class ProjectController extends Controller
     public function create()
     {
         //
-        return view('projects.create');
     }
 
     /**
@@ -96,7 +95,7 @@ class ProjectController extends Controller
                 ->with('success', 'Project created successfully.');
         } catch (\Exception $e) {
             return redirect()->back()
-                ->with('error', 'Error during the creation!');
+                ->with('error', 'Error during the creation! ' . $e->getMessage());
         }
     }
 
@@ -138,7 +137,7 @@ class ProjectController extends Controller
                 ->with('error', 'Error during the update!');
         } catch (\Exception $e) {
             return redirect()->back()
-                ->with('error', 'Error during the update!');
+                ->with('error', 'Error during the update! ' . $e->getMessage());
         }
     }
 
@@ -153,7 +152,7 @@ class ProjectController extends Controller
                 ->with('success', 'Project deleted successfully.');
         } catch (\Exception $e) {
             return redirect()->back()
-                ->with('error', 'Error during the deletion!');
+                ->with('error', 'Error during the deletion! ' . $e->getMessage());
         }
     }
 }

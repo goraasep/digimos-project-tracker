@@ -4,7 +4,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
-            <a href=".">
+            <a href="/">
                 <img src="{{ asset('assets/logo/digimos-project-2.png') }}" width="110" height="32" alt="Tabler"
                     class="navbar-brand-image">
             </a>
@@ -15,23 +15,26 @@
                     aria-label="Open user menu">
                     <span class="avatar avatar-sm"><i class="far fa-user"></i></span>
                     <div class="d-none d-xl-block ps-2">
-                        <div>{{ Auth::user()->email }}</div>
+                        <div>{{ Auth::user()->name }}</div>
                         <div class="mt-1 small text-muted">
-                            {{ Auth::user()->roles->pluck('name')->join(', ') }}
+                            {{ Auth::user()->email }}
                         </div>
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <a href="#" class="dropdown-item">Account Settings</a>
-                    <a href="#" class="dropdown-item">Logout</a>
+                    <a href="/account/settings" class="dropdown-item">Account Settings</a>
+                    <form action="/logout" method="POST">
+                        @csrf
+                        <button type="submit" class="dropdown-item">Logout</button>
+                    </form>
                 </div>
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbar-menu">
             <div class="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="./index.html">
+                    <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
+                        <a class="nav-link" href="/">
                             <span
                                 class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
