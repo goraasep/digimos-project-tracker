@@ -38,18 +38,26 @@
     </div>
     <div class="page-body">
         <div class="container-xl">
-            {{-- <h1 class="mb-4">Welcome to My Laravel App</h1>
-            <p>This is the homepage using the shared layout.</p>
-
-            <div>USER: {{ $user }}</div>
-            @role('admin')
-                <p>This is for admins only.</p>
-            @endrole
-            @role('user')
-                <p>This is for users only.</p>
-            @endrole
-            <button class="btn btn-primary">Tabler Button</button> --}}
+            <table id="projectTable" class="display">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Project Number</th>
+                        <th>Budget</th>
+                        <th>Client</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Created At</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+            </table>
         </div>
     </div>
     @include('projects.components.create-modal')
+    {{-- <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
+    </script> --}}
 @endsection

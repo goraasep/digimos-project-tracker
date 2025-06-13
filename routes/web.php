@@ -20,6 +20,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 Route::middleware('auth')->group(function () {
     Route::get('/', [ProjectController::class, 'index']);
     Route::prefix('/projects')->group(function () {
+        Route::get('/data', [ProjectController::class, 'data']);
         Route::get('/create', [ProjectController::class, 'create']);
         Route::post('/create', [ProjectController::class, 'store']);
         Route::get('/{id}', [ProjectController::class, 'show']);

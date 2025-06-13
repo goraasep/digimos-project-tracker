@@ -2,6 +2,7 @@
 /* resources/css/app.css */
 /* @import "bootstrap/dist/css/bootstrap.min.css"; */
 @import "@tabler/core/dist/css/tabler.min.css";
+/* @import "datatables.net-dt/css/dataTables.dataTables.css"; */
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
