@@ -5,13 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
+class Task extends Model
 {
     use HasUuids;
     protected $guarded = ['id'];
-
-    public function tasks()
-    {
-        return $this->hasMany(Task::class);
-    }
 }

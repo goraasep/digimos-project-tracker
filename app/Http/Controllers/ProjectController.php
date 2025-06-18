@@ -103,7 +103,7 @@ class ProjectController extends Controller
      */
     public function show(string $id)
     {
-        return view('projects.project-details', ['project' => Project::find($id)]);
+        return view('tasks.index', ['project' => Project::with('tasks')->findOrFail($id)]);
     }
 
     /**

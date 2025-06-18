@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/{id}', [ProjectController::class, 'show']);
         Route::put('/{id}', [ProjectController::class, 'update']);
         Route::delete('/{id}', [ProjectController::class, 'destroy']);
+    });
+    Route::prefix('/tasks')->group(function () {
+        Route::post('/create', [TaskController::class, 'store']);
+        Route::put('/{id}', [TaskController::class, 'update']);
+        Route::put('/{id}/update-status', [TaskController::class, 'updateStatus']);
+        Route::delete('/{id}', [TaskController::class, 'destroy']);
     });
     Route::prefix('/account')->group(function () {
         Route::get('/settings', [AccountController::class, 'index']);
