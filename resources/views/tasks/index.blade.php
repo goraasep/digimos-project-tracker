@@ -87,6 +87,13 @@
                     <h2 class="mb-3">To Do</h2>
                     <div class="mb-4">
                         <div class="row row-cards">
+                            @if ($project->tasks->where('status', 'TODO')->isEmpty())
+                                <div class="col-12">
+                                    <div class="text-secondary text-center">
+                                        No tasks found.
+                                    </div>
+                                </div>
+                            @endif
                             @foreach ($project->tasks as $task)
                                 @if ($task->status == 'TODO')
                                     @include('tasks.components.task-card', [
@@ -101,6 +108,13 @@
                     <h2 class="mb-3">In Progress</h2>
                     <div class="mb-4">
                         <div class="row row-cards">
+                            @if ($project->tasks->where('status', 'IN_PROGRESS')->isEmpty())
+                                <div class="col-12">
+                                    <div class="text-secondary text-center">
+                                        No tasks found.
+                                    </div>
+                                </div>
+                            @endif
                             @foreach ($project->tasks as $task)
                                 @if ($task->status == 'IN_PROGRESS')
                                     @include('tasks.components.task-card', [
@@ -115,6 +129,13 @@
                     <h2 class="mb-3">On Hold</h2>
                     <div class="mb-4">
                         <div class="row row-cards">
+                            @if ($project->tasks->where('status', 'ON_HOLD')->isEmpty())
+                                <div class="col-12">
+                                    <div class="text-secondary text-center">
+                                        No tasks found.
+                                    </div>
+                                </div>
+                            @endif
                             @foreach ($project->tasks as $task)
                                 @if ($task->status == 'ON_HOLD')
                                     @include('tasks.components.task-card', [
@@ -129,6 +150,13 @@
                     <h2 class="mb-3">Completed</h2>
                     <div class="mb-4">
                         <div class="row row-cards">
+                            @if ($project->tasks->where('status', 'COMPLETED')->isEmpty())
+                                <div class="col-12">
+                                    <div class="text-secondary text-center">
+                                        No tasks found.
+                                    </div>
+                                </div>
+                            @endif
                             @foreach ($project->tasks as $task)
                                 @if ($task->status == 'COMPLETED')
                                     @include('tasks.components.task-card', [
