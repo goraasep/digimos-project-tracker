@@ -48,7 +48,7 @@
                         <div class="row gy-3 align-items-start mb-4">
                             <div class="col-md-6">
                                 <div class="fw-semibold text-muted mb-1">Description</div>
-                                <div class="text-body">{{ $project->description }}</div>
+                                <div class="text-body">{!! $project->description !!}</div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row gy-3">

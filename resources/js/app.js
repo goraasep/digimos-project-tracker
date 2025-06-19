@@ -6,22 +6,25 @@ import "datatables.net-dt"; // JS functionality
 import "datatables.net-dt/css/dataTables.dataTables.css"; // CSS
 import $ from "jquery";
 
+import tinymce from "tinymce/tinymce";
+
+// Core assets
+import "tinymce/icons/default/icons";
+import "tinymce/themes/silver/theme";
+
+// Plugins
+import "tinymce/plugins/link";
+import "tinymce/plugins/lists";
+import "tinymce/plugins/table";
+import "tinymce/plugins/code";
+import "tinymce/models/dom/model";
+
+// Required CSS
+import "tinymce/skins/ui/oxide/skin";
+import "tinymce/skins/ui/oxide/content";
+import "tinymce/skins/content/default/content";
+
 window.$ = window.jQuery = $;
-
-$(document).ready(function () {
-    $("#myTable").DataTable({
-        paging: true,
-
-        pageLength: 10,
-        order: [[1, "desc"]],
-        language: {
-            lengthMenu: "Show _MENU_ entries",
-            // search: "🔍 Search:",
-            zeroRecords: "Nothing found",
-            info: "Showing _START_ to _END_ of _TOTAL_ entries",
-        },
-    });
-});
 
 $(document).ready(function () {
     $("#projectTable").DataTable({
@@ -113,4 +116,15 @@ $(document).ready(function () {
             info: "Showing _START_ to _END_ of _TOTAL_ entries",
         },
     });
+});
+
+tinymce.init({
+    selector: ".rich-text-editor",
+    height: 300,
+    menubar: false,
+    plugins: "link lists table code fontsize",
+    toolbar:
+        "undo redo | fontsize | bold italic underline | bullist numlist | code",
+    branding: false,
+    font_size_formats: "8pt 10pt 12pt 14pt 18pt", // optional: define sizes
 });

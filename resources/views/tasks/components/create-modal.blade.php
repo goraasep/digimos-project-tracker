@@ -19,7 +19,7 @@
                         <div class="col-lg-12">
                             <div>
                                 <label class="form-label">Task description</label>
-                                <textarea name="description" class="form-control" rows="3"></textarea>
+                                <textarea name="description" class="form-control rich-text-editor" rows="3"></textarea>
                             </div>
                         </div>
                     </div>

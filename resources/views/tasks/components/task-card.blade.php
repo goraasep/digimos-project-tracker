@@ -11,7 +11,7 @@
         @endif
         <div class="card-body">
             <h3 class="card-title">{{ $task->title }}</h3>
-            <div class="text-secondary">{{ $task->description }}</div>
+            <div class="text-secondary">{!! $task->description !!}</div>
             <div class="mt-4">
                 <div class="row">
                     <div class="col"></div>
