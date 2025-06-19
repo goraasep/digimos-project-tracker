@@ -18,7 +18,9 @@ class UserController extends Controller
 
     public function data(Request $request)
     {
-        $query = User::query();
+        $query = User::whereDoesntHave('roles', function ($q) {
+            $q->where('name', 'admin');
+        });
 
         $total = $query->count();
 

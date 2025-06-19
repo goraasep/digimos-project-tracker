@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'My Laravel App')</title>
+    <title>DIGIMOS Project Tracker | Login</title>
 
+    <link rel="icon" type="image/png" href="{{ asset('assets/logo/favicon.ico') }}">
+    <meta name="viewport" content="width=device-width" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -31,8 +33,7 @@
                             <input type="password" name="password" class="form-control" placeholder="Password"
                                 autocomplete="off">
                             <span class="input-group-text">
-                                <a href="#" class="link-secondary" title="Show password"
-                                    data-bs-toggle="tooltip"><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
+                                <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                         stroke-linecap="round" stroke-linejoin="round">
@@ -55,8 +56,8 @@
             </form>
             <div class="text-center text-muted mt-3">
                 {{-- Don't have account yet? <a href="./sign-up.html" tabindex="-1">Sign up</a> --}}
-                Copyright &copy; 2021
-                <a href="." class="link-secondary">Tabler</a>.
+                Copyright &copy; 2025
+                <a href="." class="link-secondary">Mechtech Instrument Solutions</a>.
                 All rights reserved.
             </div>
         </div>
