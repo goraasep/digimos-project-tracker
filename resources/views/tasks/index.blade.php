@@ -29,10 +29,9 @@
                     </div>
                     <div class="col-auto ms-auto d-print-none">
                         <div class="btn-list">
-                            <button class="btn btn-ghost-secondary d-none d-sm-inline-block" data-bs-toggle="dropdown"
-                                role="button" aria-expanded="false">
+                            <a class="link-secondary p-2" data-bs-toggle="dropdown" role="button" aria-expanded="false">
                                 <i class="fa-solid fa-ellipsis"></i>
-                            </button>
+                            </a>
                             <div class="dropdown-menu">
                                 <button class="dropdown-item" data-bs-toggle="modal"
                                     data-bs-target="#modal-update-status-project-{{ $project->id }}">
