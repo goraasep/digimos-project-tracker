@@ -15,11 +15,25 @@
                         <input type="text" name="title" class="form-control" placeholder="Your task title"
                             required>
                     </div>
-                    <div class="row">
+                    <div class="row mb-3">
                         <div class="col-lg-12">
                             <div>
                                 <label class="form-label">Task description</label>
                                 <textarea name="description" class="form-control rich-text-editor" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div>
+                                <div class="form-label">Assignee</div>
+                                <select name="users[]" class="form-select selectize" multiple>
+                                    @foreach ($users as $user)
+                                        <option value="{{ $user->id }}">
+                                            {{ $user->email }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title', 255);
             $table->text('description')->nullable();
             $table->enum('status', ['TODO', 'IN_PROGRESS', 'ON_HOLD', 'COMPLETED'])->default('TODO');
+            $table->timestamp('deadline')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
 

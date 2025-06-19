@@ -210,7 +210,7 @@
             </div>
         </div>
     </div>
-    @include('tasks.components.create-modal')
-    @include('projects.components.update-modal', ['project' => $project])
+    @include('tasks.components.create-modal', ['users' => $users])
+    @include('projects.components.update-modal', ['project' => $project, 'users' => $users])
     @include('projects.components.update-status-modal', ['project' => $project])
 @endsection

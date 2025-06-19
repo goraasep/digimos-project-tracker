@@ -24,6 +24,9 @@ import "tinymce/skins/ui/oxide/skin";
 import "tinymce/skins/ui/oxide/content";
 import "tinymce/skins/content/default/content";
 
+import "selectize/dist/js/selectize";
+import "selectize/dist/css/selectize.css";
+
 window.$ = window.jQuery = $;
 
 $(document).ready(function () {
@@ -127,4 +130,11 @@ tinymce.init({
         "undo redo | fontsize | bold italic underline | bullist numlist | code",
     branding: false,
     font_size_formats: "8pt 10pt 12pt 14pt 18pt", // optional: define sizes
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const selects = document.querySelectorAll(".selectize");
+    selects.forEach((select) => {
+        $(select).selectize();
+    });
 });

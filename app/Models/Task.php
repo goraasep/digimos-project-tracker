@@ -9,4 +9,8 @@ class Task extends Model
 {
     use HasUuids;
     protected $guarded = ['id'];
+    public function assignedUsers()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -115,7 +116,10 @@ class ProjectController extends Controller
      */
     public function show(string $id)
     {
-        return view('tasks.index', ['project' => Project::with('tasks')->findOrFail($id)]);
+        return view('tasks.index', [
+            'project' => Project::with('tasks.assignedUsers')->findOrFail($id),
+            'users' => User::all()
+        ]);
     }
 
     /**

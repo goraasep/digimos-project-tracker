@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
@@ -28,20 +29,34 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
         try {
             $validated = $request->validate([
                 'title' => 'required',
                 'description' => 'nullable|string',
-                'project_id' => 'required'
+                'project_id' => 'required|exists:projects,id',
+                'users' => 'nullable|array',
+                'users.*' => 'exists:users,id',
             ]);
 
-            Task::create($validated);
-            return redirect()->back()
-                ->with('success', 'Task created successfully.');
+            DB::beginTransaction();
+
+            $task = Task::create([
+                'title' => $validated['title'],
+                'description' => $validated['description'] ?? null,
+                'project_id' => $validated['project_id'],
+            ]);
+
+            if (!empty($validated['users'])) {
+                $task->assignedUsers()->sync($validated['users']);
+            }
+
+            DB::commit();
+
+            return redirect()->back()->with('success', 'Task created successfully.');
         } catch (\Exception $e) {
-            return redirect()->back()
-                ->with('error', 'Error during the creation! ' . $e->getMessage());
+            DB::rollBack();
+
+            return redirect()->back()->with('error', 'Error during the creation! ' . $e->getMessage());
         }
     }
 
@@ -66,18 +81,34 @@ class TaskController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
         try {
             $validated = $request->validate([
                 'title' => 'required',
                 'description' => 'nullable|string',
+                'users' => 'nullable|array',
+                'users.*' => 'exists:users,id',
             ]);
-            Task::where('id', $id)->update($validated);
-            return redirect()->back()
-                ->with('success', 'Task updated successfully.');
+
+            DB::beginTransaction();
+
+            $task = Task::findOrFail($id);
+
+            $task->update([
+                'title' => $validated['title'],
+                'description' => $validated['description'] ?? null,
+            ]);
+
+            if (isset($validated['users'])) {
+                $task->assignedUsers()->sync($validated['users']);
+            }
+
+            DB::commit();
+
+            return redirect()->back()->with('success', 'Task updated successfully.');
         } catch (\Exception $e) {
-            return redirect()->back()
-                ->with('error', 'Error during the update! ' . $e->getMessage());
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Error during the update! ' . $e->getMessage());
         }
     }
 
