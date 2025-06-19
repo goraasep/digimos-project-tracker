@@ -13,4 +13,7 @@ class Task extends Model
     {
         return $this->belongsToMany(User::class);
     }
+    protected $casts = [
+        'deadline' => 'datetime',
+    ];
 }

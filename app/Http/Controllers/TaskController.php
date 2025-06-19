@@ -36,14 +36,19 @@ class TaskController extends Controller
                 'project_id' => 'required|exists:projects,id',
                 'users' => 'nullable|array',
                 'users.*' => 'exists:users,id',
+                'deadline' => 'nullable|date_format:Y-m-d\TH:i',
             ]);
 
             DB::beginTransaction();
+            $validated['deadline'] = $validated['deadline']
+                ? \Carbon\Carbon::createFromFormat('Y-m-d\TH:i', $validated['deadline'])
+                : null;
 
             $task = Task::create([
                 'title' => $validated['title'],
                 'description' => $validated['description'] ?? null,
                 'project_id' => $validated['project_id'],
+                'deadline' => $validated['deadline'],
             ]);
 
             if (!empty($validated['users'])) {
@@ -88,15 +93,19 @@ class TaskController extends Controller
                 'description' => 'nullable|string',
                 'users' => 'nullable|array',
                 'users.*' => 'exists:users,id',
+                'deadline' => 'nullable|date_format:Y-m-d\TH:i',
             ]);
 
             DB::beginTransaction();
-
+            $validated['deadline'] = $validated['deadline']
+                ? \Carbon\Carbon::createFromFormat('Y-m-d\TH:i', $validated['deadline'])
+                : null;
             $task = Task::findOrFail($id);
 
             $task->update([
                 'title' => $validated['title'],
                 'description' => $validated['description'] ?? null,
+                'deadline' => $validated['deadline'],
             ]);
 
             if (isset($validated['users'])) {

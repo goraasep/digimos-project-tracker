@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-6">
                             <div>
                                 <div class="form-label">Assignee</div>
                                 <select name="users[]" class="form-select selectize" multiple>
@@ -35,6 +35,10 @@
                                     @endforeach
                                 </select>
                             </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="form-label">Deadline</label>
+                            <input type="datetime-local" name="deadline" class="form-control">
                         </div>
                     </div>
                 </div>
