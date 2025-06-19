@@ -25,49 +25,49 @@
                                 @csrf
                                 @method('PUT')
                                 <input type="hidden" name="status" value="TODO">
-                                <label class="dropdown-item" onclick="this.closest('form').submit()">
-                                    <input class="form-check-input m-0 me-2" type="radio"
-                                        {{ $task->status == 'TODO' ? 'checked' : '' }}>
+                                <button type="submit"
+                                    class="dropdown-item
+                                    {{ $task->status == 'TODO' ? 'active' : '' }}">
                                     To Do
-                                </label>
+                                </button>
                             </form>
                             <form method="POST" action="{{ url('/tasks/' . $task->id . '/update-status') }}">
                                 @csrf
                                 @method('PUT')
                                 <input type="hidden" name="status" value="IN_PROGRESS">
-                                <label class="dropdown-item" onclick="this.closest('form').submit()">
-                                    <input class="form-check-input m-0 me-2" type="radio"
-                                        {{ $task->status == 'IN_PROGRESS' ? 'checked' : '' }}>
+                                <button type="submit"
+                                    class="dropdown-item
+                                    {{ $task->status == 'IN_PROGRESS' ? 'active' : '' }}">
                                     In Progress
-                                </label>
+                                </button>
                             </form>
                             <form method="POST" action="{{ url('/tasks/' . $task->id . '/update-status') }}">
                                 @csrf
                                 @method('PUT')
                                 <input type="hidden" name="status" value="ON_HOLD">
-                                <label class="dropdown-item" onclick="this.closest('form').submit()">
-                                    <input class="form-check-input m-0 me-2" type="radio"
-                                        {{ $task->status == 'ON_HOLD' ? 'checked' : '' }}>
+                                <button type="submit"
+                                    class="dropdown-item
+                                    {{ $task->status == 'ON_HOLD' ? 'active' : '' }}">
                                     On Hold
-                                </label>
+                                </button>
                             </form>
                             <form method="POST" action="{{ url('/tasks/' . $task->id . '/update-status') }}">
                                 @csrf
                                 @method('PUT')
                                 <input type="hidden" name="status" value="COMPLETED">
-                                <label class="dropdown-item" onclick="this.closest('form').submit()">
-                                    <input class="form-check-input m-0 me-2" type="radio"
-                                        {{ $task->status == 'COMPLETED' ? 'checked' : '' }}>
+                                <button type="submit"
+                                    class="dropdown-item
+                                    {{ $task->status == 'COMPLETED' ? 'active' : '' }}">
                                     Completed
-                                </label>
+                                </button>
                             </form>
                             <div class="dropdown-divider"></div>
-                            <div class="dropdown-item" data-bs-toggle="modal"
+                            <button class="dropdown-item" data-bs-toggle="modal"
                                 data-bs-target="#modal-update-task-{{ $task->id }}">
-                                Edit</div>
-                            <div class="dropdown-item text-danger link" data-bs-toggle="modal"
+                                Edit</button>
+                            <button class="dropdown-item text-danger link" data-bs-toggle="modal"
                                 data-bs-target="#modal-delete-task-{{ $task->id }}">
-                                Delete</div>
+                                Delete</button>
                         </div>
                     </div>
                 </div>

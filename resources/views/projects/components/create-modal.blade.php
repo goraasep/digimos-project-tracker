@@ -25,23 +25,11 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="mb-3">
-                                <label class="form-label">Budget</label>
-                                <input type="number" name="budget" value="0" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="mb-3">
-                                <label class="form-label">Project number</label>
-                                <input type="text" name="project_number" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="mb-3">
                                 <label class="form-label">Start date</label>
                                 <input type="date" name="start_date" class="form-control" required>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <div class="mb-3">
                                 <label class="form-label">End date</label>
                                 <input type="date" name="end_date" class="form-control" required>

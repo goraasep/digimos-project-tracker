@@ -14,13 +14,17 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->uuid('created_by')->nullable();
+            $table->foreign('created_by')
+                ->references('id')
+                ->on('users')
+                ->onDelete('set null');
             $table->string("title", 255);
-            $table->string("project_number", 255);
             $table->text("description")->nullable();
-            $table->double("budget")->default(0);
             $table->string("client", 255);
             $table->date("start_date")->nullable();
             $table->date("end_date")->nullable();
+            $table->enum('status', ['TODO', 'IN_PROGRESS', 'ON_HOLD', 'COMPLETED'])->default('TODO');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });

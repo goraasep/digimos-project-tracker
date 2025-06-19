@@ -31,16 +31,10 @@ $(document).ready(function () {
         paging: true,
         pageLength: 10,
         ordering: true,
-        order: [[6, "desc"]],
+        order: [[4, "desc"]],
         ajax: "/projects/data",
         columns: [
             { data: "title", name: "title", orderSequence: ["asc", "desc"] },
-            {
-                data: "project_number",
-                name: "project_number",
-                orderSequence: ["asc", "desc"],
-            },
-            { data: "budget", name: "budget", orderSequence: ["asc", "desc"] },
             { data: "client", name: "client", orderSequence: ["asc", "desc"] },
             {
                 data: "start_date",
@@ -55,6 +49,16 @@ $(document).ready(function () {
             {
                 data: "created_at",
                 name: "created_at",
+                orderSequence: ["asc", "desc"],
+            },
+            {
+                data: "created_by",
+                name: "created_by",
+                orderSequence: ["asc", "desc"],
+            },
+            {
+                data: "status",
+                name: "status",
                 orderSequence: ["asc", "desc"],
             },
             {

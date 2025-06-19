@@ -16,6 +16,7 @@
                         {{ $project->title }}
                     </h2>
                 </div>
+
             </div>
         </div>
     </div>
@@ -23,42 +24,82 @@
         <div class="container-xl">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Project info</h3>
+                    <div class="col">
+                        <h3 class="card-title">Project info</h3>
+                    </div>
+                    <div class="col-auto ms-auto d-print-none">
+                        <div class="btn-list">
+                            <button class="btn btn-ghost-secondary d-none d-sm-inline-block" data-bs-toggle="dropdown"
+                                role="button" aria-expanded="false">
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <button class="dropdown-item" data-bs-toggle="modal"
+                                    data-bs-target="#modal-update-status-project-{{ $project->id }}">
+                                    Change Status</button>
+                                <button class="dropdown-item" data-bs-toggle="modal"
+                                    data-bs-target="#modal-edit-project-{{ $project->id }}">
+                                    Edit</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
-                    <div class="datagrid">
-                        <div class="datagrid-item">
-                            <div class="datagrid-title">Description</div>
-                            <div class="datagrid-content">{{ $project->description }}</div>
+                    <div class="container">
+                        <div class="row gy-3 align-items-start mb-4">
+                            <div class="col-md-6">
+                                <div class="fw-semibold text-muted mb-1">Description</div>
+                                <div class="text-body">{{ $project->description }}</div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row gy-3">
+                                    <div class="col-sm-6">
+                                        <div class="fw-semibold text-muted mb-1">Start Date</div>
+                                        <div class="text-body">
+                                            {{ \Carbon\Carbon::parse($project->start_date)->format('d M Y') }}</div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="fw-semibold text-muted mb-1">End Date</div>
+                                        <div class="text-body">
+                                            {{ \Carbon\Carbon::parse($project->end_date)->format('d M Y') }}</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="datagrid-item">
-                            <div class="datagrid-title">Project Number</div>
-                            <div class="datagrid-content">{{ $project->project_number }}</div>
-                        </div>
-                        <div class="datagrid-item">
-                            <div class="datagrid-title">Budget</div>
-                            <div class="datagrid-content">{{ $project->budget }}</div>
-                        </div>
-                        <div class="datagrid-item">
-                            <div class="datagrid-title">Client</div>
-                            <div class="datagrid-content">{{ $project->client }}</div>
-                        </div>
-                        <div class="datagrid-item">
-                            <div class="datagrid-title">Start Date</div>
-                            <div class="datagrid-content">{{ $project->start_date }}</div>
-                        </div>
-                        <div class="datagrid-item">
-                            <div class="datagrid-title">End Date</div>
-                            <div class="datagrid-content">{{ $project->end_date }}</div>
-                        </div>
-                        <div class="datagrid-item">
-                            <div class="datagrid-title">Created At</div>
-                            <div class="datagrid-content">{{ $project->created_at }}</div>
-                        </div>
-                        <div class="datagrid-item">
-                            <div class="datagrid-title">Status</div>
-                            <div class="datagrid-content">
-                                <span class="status status-green">ON PROGRESS</span>
+                        <div class="row gy-4">
+                            <div class="col-md-3 col-sm-6">
+                                <div class="fw-semibold text-muted mb-1">Client</div>
+                                <div class="text-body">{{ $project->client }}</div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6">
+                                <div class="fw-semibold text-muted mb-1">Created At</div>
+                                <div class="text-body">{{ $project->created_at->format('d M Y H:i') }}</div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6">
+                                <div class="fw-semibold text-muted mb-1">Created By</div>
+                                <div class="text-body">
+                                    {{ $project->createdBy ? $project->createdBy->email : 'Deleted user' }}</div>
+                            </div>
+
+                            @php
+                                $statusColors = [
+                                    'TODO' => 'gray',
+                                    'IN_PROGRESS' => 'blue',
+                                    'ON_HOLD' => 'yellow',
+                                    'COMPLETED' => 'green',
+                                ];
+                                $statusClass = $statusColors[$project->status] ?? 'gray';
+                            @endphp
+
+                            <div class="col-md-3 col-sm-6">
+                                <div class="fw-semibold text-muted mb-1">Status</div>
+                                <div>
+                                    <span class="status status-{{ $statusClass }}">
+                                        {{ str_replace('_', ' ', $project->status) }}
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -171,4 +212,6 @@
         </div>
     </div>
     @include('tasks.components.create-modal')
+    @include('projects.components.update-modal', ['project' => $project])
+    @include('projects.components.update-status-modal', ['project' => $project])
 @endsection

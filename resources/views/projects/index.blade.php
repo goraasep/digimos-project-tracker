@@ -42,12 +42,12 @@
                 <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Project Number</th>
-                        <th>Budget</th>
                         <th>Client</th>
                         <th>Start Date</th>
                         <th>End Date</th>
                         <th>Created At</th>
+                        <th>Created By</th>
+                        <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>

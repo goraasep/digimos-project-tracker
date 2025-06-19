@@ -18,6 +18,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/create', [ProjectController::class, 'store']);
         Route::get('/{id}', [ProjectController::class, 'show']);
         Route::put('/{id}', [ProjectController::class, 'update']);
+        Route::put('/{id}/update-status', [ProjectController::class, 'updateStatus']);
         Route::delete('/{id}', [ProjectController::class, 'destroy']);
     });
     Route::prefix('/tasks')->group(function () {
